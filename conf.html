@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <link rel="icon" href="https://img.icons8.com/?size=100&id=XBMnwwJYQvfN&format=png&color=000000" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ПК Builder</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="conf.css">
+    <script>
+        function toggleMenu(event) {
+            event.preventDefault();
+            document.getElementById("nav-menu").classList.toggle("show");
+        }
+    
+        window.onclick = function(event) {
+            var menu = document.getElementById("nav-menu");
+            if (!event.target.matches('.menu-btn') && menu.classList.contains('show')) {
+                menu.classList.remove('show');
+            }
+        }
+    
+        // Закрываем меню при уходе курсора за его пределы
+        document.getElementById("nav-menu").addEventListener("mouseleave", function() {
+            this.classList.remove("show");
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <img src="photo/logo.png" alt="Логотип" class="logo">
+        <h1>Конфигуратор</h1>
+        <img src="photo/login.png" alt="Регистрация" class="register-icon" onclick="toggleModal()"> <!-- Кнопка регистрации -->
+        <div class="button-container">
+            <a href="glav.html" class="button button-3">Главная</a>
+            <a href="catal.html" class="button button-3">Каталог</a>
+            <a href="sells.html" class="button button-3">Акции</a>
+            <a href="conf.html" class="button button-3">Конфигуратор ПК</a>
+        </div>
+        <button class="menu-btn" onclick="toggleMenu(event)">&#9776;</button>
+        <ul id="nav-menu" class="dropdown">
+            <a href="glav.html">Главная</button>
+            <a href="catal.html">Каталог</a>
+            <a href="sells.html">Акции</a>
+            <a href="conf.html">Конфигуратор ПК</a>
+        </ul>
+    </header>
+
+    <main>
+        <section id="pc-configurator">
+            <h2>Конфигуратор ПК</h2>
+            
+            <div class="config-section">
+                <label for="motherboard">Материнская плата:</label>
+                <select id="motherboard" onchange="updatePrice()">
+                    <option value="" data-price="0">Выберите материнскую плату</option>
+                    <option value="mb1" data-price="15000">ASUS ROG Strix B550-F - 15,000₽</option>
+                    <option value="mb2" data-price="20000">MSI Z690 Tomahawk - 20,000₽</option>
+                    <option value="mb3" data-price="12000">Gigabyte Aorus Elite - 12,000₽</option>
+                </select>
+                <span class="price-display" id="price-motherboard"></span>
+            </div>
+    
+            <div class="config-section">
+                <label for="processor">Процессор:</label>
+                <select id="processor" onchange="updatePrice()">
+                    <option value="" data-price="0">Выберите процессор</option>
+                    <option value="cpu1" data-price="25000">AMD Ryzen 7 5800X - 25,000₽</option>
+                    <option value="cpu2" data-price="30000">Intel Core i9-12900K - 30,000₽</option>
+                    <option value="cpu3" data-price="20000">AMD Ryzen 5 5600X - 20,000₽</option>
+                </select>
+                <span class="price-display" id="price-processor"></span>
+            </div>
+
+            <div class="config-section">
+                <label for="ram">Оперативная память:</label>
+                <select id="ram" onchange="updatePrice()">
+                    <option value="" data-price="0">Выберите ОЗУ</option>
+                    <option value="ram1" data-price="8000">Corsair Vengeance LPX - 8,000₽</option>
+                    <option value="ram2" data-price="12700">G.Skill Trident Z RGB - 12,700₽</option>
+                    <option value="ram3" data-price="10300">Kingston Fury Beast - 10,300₽</option>
+                </select>
+                <span class="price-display" id="price-ram"></span>
+            </div>
+    
+            <div class="config-section">
+                <label for="cooling">Охлаждение:</label>
+                <select id="cooling" onchange="updatePrice()">
+                    <option value="" data-price="0">Выберите систему охлаждения</option>
+                    <option value="cool1" data-price="10000">NZXT Kraken X63 - 10,000₽</option>
+                    <option value="cool2" data-price="7000">Noctua NH-D15 - 7,000₽</option>
+                    <option value="cool3" data-price="4000">Cooler Master Hyper 212 - 4,000₽</option>
+                </select>
+                <span class="price-display" id="price-cooling"></span>
+            </div>
+    
+            <div class="config-section">
+                <label for="gpu">Видеокарта:</label>
+                <select id="gpu" onchange="updatePrice()">
+                    <option value="" data-price="0">Выберите видеокарту</option>
+                    <option value="gpu1" data-price="70000">NVIDIA RTX 3080 - 70,000₽</option>
+                    <option value="gpu2" data-price="60000">AMD Radeon RX 6800 - 60,000₽</option>
+                    <option value="gpu3" data-price="45000">NVIDIA RTX 3060 - 45,000₽</option>
+                </select>
+                <span class="price-display" id="price-gpu"></span>
+            </div>
+    
+            <div class="config-section">
+                <label for="psu">Блок питания:</label>
+                <select id="psu" onchange="updatePrice()">
+                    <option value="" data-price="0">Выберите блок питания</option>
+                    <option value="psu1" data-price="8000">Corsair RM750x - 8,000₽</option>
+                    <option value="psu2" data-price="12000">Seasonic Prime TX-850 - 12,000₽</option>
+                    <option value="psu3" data-price="5000">Cooler Master MWE 650 - 5,000₽</option>
+                </select>
+                <span class="price-display" id="price-psu"></span>
+            </div>
+
+            <div class="config-section">
+                <label for="case">Корпус:</label>
+                <select id="case" onchange="updatePrice()">
+                    <option value="" data-price="0">Выберите корпус</option>
+                    <option value="case1" data-price="13400">NZXT H510 Elite - 13,400₽</option>
+                    <option value="case2" data-price="4800">Phanteks Enthoo Pro - 4,800₽</option>
+                    <option value="case3" data-price="10000">Cooler Master NR200 - 10,000₽</option>
+                </select>
+                <span class="price-display" id="price-case"></span>
+            </div>
+    
+            <div id="storage-container">
+                <button type="button" onclick="addStorage('SSD')">Добавить SSD</button>
+                <button type="button" onclick="addStorage('HDD')">Добавить HDD</button>
+            </div>
+    
+            <h3>Итоговая стоимость: <span id="total-price">0</span>₽</h3>
+    
+            <div id="order-section">
+                <label for="store-location">Выберите магазин:</label>
+                <select id="store-location">
+                    <option value="store1">Москва, ул. Ленина, д. 1</option>
+                    <option value="store2">Санкт-Петербург, Невский проспект, д. 5</option>
+                    <option value="store3">Казань, ул. Баумана, д. 3</option>
+                </select>
+                <p>Оплата при получении</p>
+                <button onclick="placeOrder()">Оформить заказ</button>
+            </div>
+        </section>
+    </main>
+    
+    <script>
+        function updatePrice() {
+            const components = ['motherboard', 'processor', 'cooling', 'gpu', 'psu', 'ram', 'case'];
+            let totalPrice = 0;
+            components.forEach(id => {
+                const select = document.getElementById(id);
+                const price = select.options[select.selectedIndex].dataset.price;
+                totalPrice += parseInt(price);
+                document.getElementById(`price-${id}`).innerText = price ? `${price}₽` : '';
+            });
+            document.getElementById('total-price').innerText = totalPrice;
+        }
+    
+        function addStorage(type) {
+            const container = document.getElementById('storage-container');
+            const select = document.createElement('select');
+            select.onchange = updatePrice;
+            if (type === 'SSD') {
+                select.innerHTML = `
+                    <option value="" data-price="0">Выберите SSD</option>
+                    <option value="ssd1" data-price="9000">Samsung 970 Evo - 9,000₽</option>
+                    <option value="ssd2" data-price="12000">WD Black SN850 - 12,000₽</option>
+                    <option value="ssd3" data-price="5000">Crucial MX500 - 5,000₽</option>`;
+            } else if (type === 'HDD') {
+                select.innerHTML = `
+                    <option value="" data-price="0">Выберите HDD</option>
+                    <option value="hdd1" data-price="4000">Seagate Barracuda - 4,000₽</option>
+                    <option value="hdd2" data-price="7000">Western Digital Blue - 7,000₽</option>
+                    <option value="hdd3" data-price="3500">Toshiba P300 - 3,500₽</option>`;
+            }
+            container.appendChild(select);
+        }
+    
+        function placeOrder() {
+            const location = document.getElementById('store-location').value;
+            alert(`Заказ оформлен! Магазин: ${location}`);
+        }
+    </script>
+    
+    
+
+    <footer>
+        <div class="footer-content">
+            <div class="about">
+                <h2>О нас</h2>
+                <p>Сайт разработан студентом РТУ МИРЭА в целях получения практических и теоретических навыков по созданию и оформлению онлайн ресурсов.</p>
+    
+                <div class="social-buttons">
+                    <button class="social-button vk" onclick="window.location.href='https://vk.com/id369061652';">VK</button>
+                    <button class="social-button twitter" onclick="window.location.href='https://online-edu.mirea.ru/mod/folder/view.php?id=634682';">СДО</button>
+                    <button class="social-button instagram" onclick="window.location.href='https://youtube.com/';">YouTube</button>
+                </div>
+            </div>
+    
+            <div class="navigation">
+                <h2>Навигация</h2>
+                <ul>
+                    <li><a href="glav.html">Главная</a></li>
+                    <li><a href="catal.html">Каталог</a></li>
+                    <li><a href="sells.html">Акции</a></li>
+                    <li><a href="conf.html">Конфигуратор</a></li>
+                </ul>
+            </div>
+    
+            <div class="contact-info">
+                <h2>Контактная информация</h2>
+                <p>Телефон: <a href="tel:+1234567890">+7 (916) 330 04-08</a></p>
+                <p>Email: <a href="mailto:contact@website.com">dimaproidakov006@gmail.com</a></p>
+                <button class="feedback-button" onclick="openModal()">Обратная связь</button>
+            </div>
+        </div>
+    
+        <p>&copy; 2024 практика по ПРКЧ</p>
+        <address>
+            Разработчик сайта: <a href="mailto:developer@mail.com">developer@mail.com</a>
+        </address>
+    </footer>
+    <div id="feedbackModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Обратная связь</h2>
+            <form id="feedbackForm">
+                <label for="first-name">Имя:</label>
+                <input type="text" id="first-name" name="first-name" required>
+                
+                <label for="last-name">Фамилия:</label>
+                <input type="text" id="last-name" name="last-name" required>
+                
+                <label for="email">Почта:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="phone">Телефон:</label>
+                <input type="tel" id="phone" name="phone" required>
+                
+                <label for="reason">Причина обращения:</label>
+                <textarea id="reason" name="reason" rows="4" required></textarea>
+                
+                <!-- Секция CAPTCHA -->
+                <div id="captcha-section">
+                    <label for="captcha">Капча: <span id="captchaText"></span></label>
+                    <input type="text" id="captchaInput" required>
+                    <button type="button" id="checkCaptchaButton" onclick="checkCaptcha()">Проверить</button>
+                    <small id="captchaError" style="color: red; display: none;">Неверный ввод. Попробуйте снова.</small>
+                </div>
+                
+                <button type="button" id="submitButton" onclick="submitForm()" disabled>Отправить</button>
+            </form>
+        </div>
+    </div>
+    <script src="scrpt/script.js"></script>
+    <script src="scrpt/reg.js"></script>
+    <script src="scrpt/feedback.js"></script>
+    <script src="scrpt/capcha.js"></script>
+    <script src="scrpt/card_text.js"></script>
+    <script src="scrpt/korzina.js"></script>
+    <script src="scrpt/sort.js"></script>
+    <script src="scrpt/gallery.js"></script>
+    <script src="scrpt/selected.js"></script>
+</body>
+</html>
