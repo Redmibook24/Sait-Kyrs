@@ -7,6 +7,62 @@ body {
     color: #333;
 }
 
+.container {
+    max-width: 1200px; /* Максимальная ширина для больших экранов */
+    margin: 0 auto;    /* Центрирование содержимого */
+    padding: 0 15px;   /* Отступы для небольших экранов */
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap; /* Чтобы элементы переносились на новую строку при недостатке места */
+    gap: 15px;       /* Расстояние между элементами */
+}
+
+img {
+    max-width: 100%;   /* Масштабирование изображений */
+    height: auto;
+    display: block;    /* Убирает пробелы вокруг изображений */
+}
+
+.column {
+    flex: 1;          /* Гибкая ширина */
+    min-width: 300px; /* Минимальная ширина столбца */
+}
+
+/* === Медиазапросы для адаптивности === */
+/* Для устройств с шириной экрана меньше 768px */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 10px;
+    }
+
+    .row {
+        flex-direction: column; /* Переводим колонки в строки */
+    }
+
+    nav ul {
+        flex-direction: column; /* Вертикальное меню */
+        gap: 10px;
+    }
+}
+
+/* Для устройств с шириной экрана меньше 480px */
+@media (max-width: 480px) {
+    body {
+        font-size: 14px; /* Уменьшаем размер шрифта */
+    }
+
+    header {
+        padding: 10px;
+        text-align: center;
+    }
+
+    .column {
+        min-width: 100%; /* Колонка занимает всю ширину */
+    }
+}
+
 header {
   background: #35424a;
   color: #ffffff;
