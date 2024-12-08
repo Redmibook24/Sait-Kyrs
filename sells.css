@@ -736,3 +736,47 @@ footer {
     font-style: italic;
     margin-top: 5px;
 }
+.button-container {
+    display: flex; /* Используем flexbox для расположения кнопок */
+    flex-wrap: wrap; /* Кнопки переносятся на новую строку при нехватке места */
+    justify-content: center; /* Выравнивание кнопок по центру */
+    gap: 10px; /* Отступы между кнопками */
+    padding: 10px; /* Отступы внутри контейнера */
+    margin: 0 auto; /* Центрирование контейнера */
+}
+
+/* Общие стили для кнопок */
+.button {
+    padding: 10px 20px; /* Удобные размеры кнопок */
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap; /* Не позволяет тексту переноситься на новую строку */
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+.button-3 {
+    display: inline-block; /* Для ссылок-кнопок */
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+    .button-container {
+        flex-direction: column; /* Располагаем кнопки в столбик */
+        align-items: stretch; /* Растягиваем кнопки на всю ширину */
+    }
+
+    .button {
+        font-size: 14px; /* Уменьшаем размер текста на кнопках */
+        padding: 8px 15px; /* Уменьшаем внутренние отступы */
+        width: 100%; /* Кнопки занимают всю ширину контейнера */
+    }
+}
